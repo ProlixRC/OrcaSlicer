@@ -3339,7 +3339,8 @@ GCode::LayerResult GCode::process_layer(
                     this->set_origin(unscale(offset));
                     //FIXME the following code prints regions in the order they are defined, the path is not optimized in any way.
                     bool is_infill_first = print.default_region_config().wall_infill_order == WallInfillOrder::InfillInnerOuter ||
-                                           print.default_region_config().wall_infill_order == WallInfillOrder::InfillOuterInner;
+                                           print.default_region_config().wall_infill_order == WallInfillOrder::InfillOuterInner ||
+										   print.default_region_config().wall_infill_order == WallInfillOrder::InfillInfillInnerOuterInnerOuter;
                     //BBS: for first layer, we always print wall firstly to get better bed adhesive force
                     //This behaviour is same with cura
                     if (is_infill_first && !first_layer) {
@@ -3547,7 +3548,7 @@ std::string GCode::extrude_loop(ExtrusionLoop loop, std::string description, dou
         assert(m_layer != nullptr);
         bool is_outer_wall_first = m_config.wall_infill_order == WallInfillOrder::OuterInnerInfill
                                 || m_config.wall_infill_order == WallInfillOrder::InfillOuterInner
-                                || m_config.wall_infill_order == WallInfillOrder::InnerOuterInnerInfill;
+                                || m_config.wall_infill_order == WallInfillOrder::InfillInfillInnerOuterInnerOuter;
         m_seam_placer.place_seam(m_layer, loop, is_outer_wall_first, this->last_pos());
     } else
         loop.split_at(last_pos, false);

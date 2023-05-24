@@ -153,7 +153,8 @@ static t_config_enum_values s_keys_map_WallInfillOrder {
     { "inner-outer-inner wall/infill",     int(WallInfillOrder::InnerOuterInnerInfill) },
     { "infill/inner wall/outer wall",     int(WallInfillOrder::InfillInnerOuter) },
     { "infill/outer wall/inner wall",     int(WallInfillOrder::InfillOuterInner) },
-    { "inner-outer-inner wall/infill",     int(WallInfillOrder::InnerOuterInnerInfill)}
+    { "inner-outer-inner wall/infill",     int(WallInfillOrder::InnerOuterInnerInfill)},
+	{ "infill/infill/wall i-o/wall i-o",	int(WallInfillOrder::InfillInfillInnerOuterInnerOuter)}
 };
 CONFIG_OPTION_ENUM_DEFINE_STATIC_MAPS(WallInfillOrder)
 
@@ -1099,11 +1100,13 @@ void PrintConfigDef::init_fff_params()
     def->enum_values.push_back("infill/inner wall/outer wall");
     def->enum_values.push_back("infill/outer wall/inner wall");
     def->enum_values.push_back("inner-outer-inner wall/infill");
+	def->enum_values.push_back("infill/infill/wall i-o/wall i-o");
     def->enum_labels.push_back(L("inner/outer/infill"));
     def->enum_labels.push_back(L("outer/inner/infill"));
     def->enum_labels.push_back(L("infill/inner/outer"));
     def->enum_labels.push_back(L("infill/outer/inner"));
     def->enum_labels.push_back(L("inner-outer-inner/infill"));
+	def->enum_labels.push_back(L("infill/infill/wall i-o/wall i-o"));
     def->mode = comAdvanced;
     def->set_default_value(new ConfigOptionEnum<WallInfillOrder>(WallInfillOrder::InnerOuterInfill));
 

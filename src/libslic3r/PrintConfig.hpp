@@ -73,6 +73,7 @@ enum class WallInfillOrder {
     InfillInnerOuter,
     InfillOuterInner,
     InnerOuterInnerInfill,
+	InfillInfillInnerOuterInnerOuter,
     Count,
 };
 //BBS
